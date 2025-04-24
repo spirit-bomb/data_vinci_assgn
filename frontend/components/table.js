@@ -4,9 +4,9 @@ import { useState } from "react";
 export default function Table({ campaigns }) {
     const [filter, setFilter] = useState("All");
 
-    const filtered = campaigns.filter(
-        (c) => filter === "All" || c.status === filter
-    );
+    const filtered = Array.isArray(campaigns)
+        ? campaigns.filter((c) => filter === "All" || c.status === filter)
+        : [];
 
     return (
         <div className="space-y-4">
